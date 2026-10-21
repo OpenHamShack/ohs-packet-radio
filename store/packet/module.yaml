@@ -1,0 +1,219 @@
+apiVersion: dock360/v1
+
+# The store form of OpenHamShack Packet Radio (docs/BBS-DESIGN.md): the
+# controller's packet BBS, its always-on conference room and its mail
+# store, on one radio the controller's broker lends it and keeps reserved
+# for it, so the desktop app cannot open that radio (D1). The engine is
+# ohs-libs shack_packet, as in the desktop app; the server is
+# `python3 -m shack_packet_box`; its page is the sysop's console.
+# Packaged by tools/build-store.sh, which stages src/shack_packet_box,
+# the radio links of src/shack_packet_app and the pinned ohs-libs beside
+# this file.
+id: shack-packet
+name: Packet Radio BBS
+version: 0.3.0-beta.1
+summary: A packet BBS, an always-on conference room and a mail store on the controller's radio.
+description: >
+  OpenHamShack Packet Radio on the controller: an FBB/BPQ-style packet BBS
+  (personal mail, bulletins, forwarding with other BBSs and with
+  OpenHamShack stations), an always-on conference room, and an ID beacon,
+  on a radio the controller lends it and keeps reserved for it.
+
+  It receives as soon as it starts. It transmits only after a person with
+  the Transmit level arms it on its page, for as long as that person's
+  device or session stays signed in and the controller's broker agrees,
+  and never if TX_ALLOWED is off.
+category: radio
+icon: 📬
+author: OpenHamShack
+license: GPL-3.0-or-later
+homepage: https://openhamshack.com/
+
+openhamshack:
+  kind: packet
+  tx_capable: true
+  anonymous_view: false
+  default_write_level: control
+  # The proxy's minimums (CONTROLLER-CONTRACT 5.2), first match wins; the
+  # app checks again (shack_packet_box/server.py ROUTES).
+  levels:
+    - {path: "/api/tx/arm", method: POST, level: transmit}
+    - {path: "/api/messages/*", method: GET, level: view}
+  release_request: /api/shack/release
+  busy: /api/shack/busy
+  broker_devices: [ic9700, ic705, pluto]
+
+# Lent by the broker while the BBS runs (claim: runtime); the names are the
+# rendezvous names every OpenHamShack app using these radios declares.
+exclusive_devices:
+  - name: ic9700-1
+    label: IC-9700
+    claim: runtime
+  - name: ic705-1
+    label: IC-705
+    claim: runtime
+  - name: pluto-1
+    label: Pluto
+    claim: runtime
+
+# One value a line: a setting cannot hold a line break (Dock360).
+env:
+  - key: BBS_CALLSIGN
+    label: Station callsign
+    type: string
+    default: ""
+    help: The licensed callsign the BBS and the room answer on. Nothing starts without one.
+  - key: BBS_SSID
+    label: BBS SSID
+    type: int
+    default: 1
+  - key: ROOM_SSID
+    label: Conference room SSID (0 for none)
+    type: int
+    default: 2
+  - key: RADIO_KIND
+    label: Radio
+    type: select
+    default: simulator
+    options:
+      - simulator
+      - ic-9700
+      - ic-705
+      - pluto
+    help: The simulator keys nothing real. A real radio is claimed from the controller's broker and kept reserved.
+  - key: RADIO_DEVICE
+    label: Broker device id
+    type: string
+    default: ""
+    help: The controller's id for the radio (Host - Hardware), e.g. ic9700-1. Empty takes the first of its kind.
+  - key: RADIO_USER
+    label: Icom network user
+    type: string
+    default: ""
+  - key: RADIO_PASSWORD
+    label: Icom network password
+    type: password
+    default: ""
+  - key: FREQUENCY_HZ
+    label: Channel (Hz)
+    type: int
+    default: 144950000
+  - key: TX_ALLOWED
+    label: Allow transmit to be armed
+    type: bool
+    default: false
+    help: Off, the BBS only listens. On, a person with Transmit may arm it on its page.
+  - key: ARM_HOURS
+    label: An arm lasts (hours, 0 until disarmed)
+    type: int
+    default: 24
+  - key: BBS_INFO
+    label: Information text (| for a new line)
+    type: string
+    default: ""
+  - key: BBS_QTH
+    label: Location
+    type: string
+    default: ""
+  - key: BBS_HIERARCHY
+    label: Hierarchical address after the call (e.g. #79.GBR.EURO)
+    type: string
+    default: ""
+  - key: MAX_MESSAGE_KB
+    label: Largest message (kB)
+    type: int
+    default: 8
+  - key: MAX_PER_DAY
+    label: Messages one station may leave a day
+    type: int
+    default: 20
+  - key: MAX_HELD
+    label: Messages kept for one station
+    type: int
+    default: 100
+  - key: IDLE_MINUTES
+    label: Disconnect a silent user after (minutes)
+    type: int
+    default: 10
+  - key: MAX_SESSIONS
+    label: Users connected at once
+    type: int
+    default: 4
+  - key: BULLETIN_DAYS
+    label: Bulletins kept (days)
+    type: int
+    default: 30
+  - key: PERSONAL_DAYS
+    label: Personal mail kept (days)
+    type: int
+    default: 90
+  - key: READ_DAYS
+    label: Read mail kept (days)
+    type: int
+    default: 14
+  - key: FWD_PARTNERS
+    label: Forwarding partners
+    type: string
+    default: ""
+    help: Comma-separated, each "CALL-SSID via DIGI routes LABEL LABEL", e.g. "GB7XXX-1 routes GB7XXX #79".
+  - key: FWD_INTERVAL_MIN
+    label: Forward every (minutes)
+    type: int
+    default: 30
+  - key: ID_TEXT
+    label: ID beacon text (empty for the default)
+    type: string
+    default: ""
+  - key: ROOM_TOPIC
+    label: Conference topic at start
+    type: string
+    default: ""
+
+runtime:
+  build:
+    context: .
+    containerfile: Containerfile
+  user: "1000:1000"
+  read_only_rootfs: true
+  no_new_privileges: true
+  cap_drop:
+    - ALL
+  tmpfs:
+    - /tmp
+  # Stop: unkey, close the radio, end the claim - well inside this.
+  stop_timeout: 15
+
+web:
+  enabled: true
+  container_port: 8080
+  subdomain: packet
+  strip_prefix: true
+  websockets: false
+
+health:
+  type: http
+  # 401 proxy_required is healthy: the server is up and refusing a request
+  # the platform's proxy did not vouch for.
+  path: /api/status
+  expect_status: [200, 401]
+  interval: 30
+  timeout: 5
+  retries: 3
+  start_period: 20
+
+resources:
+  memory_max: 512M
+  memory_high: 384M
+  cpu_quota: 100%
+  pids_max: 512
+
+volumes:
+  - name: data
+    container_path: /data
+    description: The mail store (bbs.db) and the radio's saved settings.
+    backup: true
+
+backup:
+  strategy: hot
+
+min_dock360: "0.12.25"

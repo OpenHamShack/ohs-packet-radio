@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "app": "packet",
+  "actions": [
+    {"id": "arm", "kind": "press", "label": "pad.arm", "group": "transmit", "short": ["ARM", "TX"]},
+    {"id": "disarm", "kind": "press", "label": "pad.disarm", "group": "transmit", "short": ["DISARM", ""]},
+    {"id": "halt", "kind": "press", "label": "pad.halt", "group": "transmit", "short": ["HALT", "TX"]},
+    {"id": "beacon", "kind": "press", "label": "pad.beacon", "group": "transmit", "short": ["BEACON", "NOW"]},
+    {"id": "connect", "kind": "press", "label": "pad.connect", "group": "other", "short": ["CONNECT", ""]},
+    {"id": "disconnect", "kind": "press", "label": "pad.disconnect", "group": "other", "short": ["DISCONN", ""]},
+    {"id": "page:next", "kind": "press", "label": "pad.page_next", "group": "screens", "short": ["PAGE", "NEXT"]},
+    {"id": "page:prev", "kind": "press", "label": "pad.page_prev", "group": "screens", "short": ["PAGE", "PREV"]},
+    {"id": "power", "kind": "turn", "label": "pad.power", "group": "transmit", "short": ["POWER", ""]},
+    {"id": "squelch", "kind": "turn", "label": "pad.squelch", "group": "receive", "short": ["SQL", ""]}
+  ]
+}

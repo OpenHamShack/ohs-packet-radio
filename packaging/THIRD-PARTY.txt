@@ -1,0 +1,69 @@
+OpenHamShack Packet Radio - third-party software
+================================================
+
+OpenHamShack Packet Radio is free software under the GNU General Public
+License, version 3 or later (LICENSE, beside this file). This installer
+also carries the software below, each under its own licence; the licence
+texts are in this folder.
+
+Source code
+-----------
+
+The complete source of this release - the program itself, the
+OpenHamShack libraries it is built on, and every GPL and LGPL component
+listed below, exactly as built into this installer - is published at
+
+    https://openhamshack.com/source/#openhamshack-packet
+
+and stays there for as long as this release is offered. The Linux
+AppImage also carries system libraries from Debian 12 ("bookworm");
+their source is Debian's, at https://snapshot.debian.org/.
+
+Components
+----------
+
+GPL and LGPL (source at the address above):
+  PyQt6 6.9.1 ..................... GPL-3.0          the user interface bindings
+  Qt 6.9.2 (qtbase, qtsvg, qtimageformats, qttranslations; qtwayland in
+    the AppImage) ................. LGPL-3.0         the user interface
+  paramiko 3.5.1 .................. LGPL-2.1+        SSH to a Pluto's transmitter guard
+  python-zeroconf 0.151.5 ......... LGPL-2.1+        finding an OpenHamShack controller
+  libiio 0.26 ..................... LGPL-2.1+        an ADALM-Pluto (Windows, macOS)
+  libusb 1.0.24, 1.0.27, 1.0.29 ... LGPL-2.1+        USB for libiio, librtlsdr, libhackrf
+  libserialport 0.1.1 ............. LGPL-3.0+        part of libiio (Windows)
+  librtlsdr (rtl-sdr-blog V1.4.0) . GPL-2.0+         an RTL-SDR dongle (Windows, macOS)
+  HackRF 2026.01.3 (libhackrf) .... GPL-2.0; libhackrf itself BSD-3-Clause
+                                                     a HackRF One (Windows, macOS)
+
+Ported into the OpenHamShack libraries (their source is in this
+release's own source tarballs, at the address above):
+  LZHUF compression for Winlink email (shack_packet.lzhuf, b2f), ported
+  from wl2k-go's lzhuf (MIT, Copyright 2016 Martin Hebnes Pedersen
+  LA5NTA), itself from JNOS 2's lzhuf.c by Haruhiko Okumura, Haruyasu
+  Yoshizaki and Kenji Rikitake ("use, distribute, and modify this
+  program freely"). The Winlink secure-login salt is from wl2k-go (MIT)
+  and paclink-unix.
+  YAPP and YAPP-C file transfer (shack_packet.yapp), written from
+  F6FBB's yapp.c in LinFBB 7.04j (Copyright 1986-2000 Jean-Paul
+  Roubelat F6FBB, GPL-2.0-or-later, used here under GPL-3.0) and the
+  FBB documentation's YAPP extension appendix.
+  7PLUS encoding (shack_packet.sevenplus), written to the format of
+  7PLUS 2.25 by Axel Bauda DG1BBQ as its source writes it; no 7PLUS
+  code is carried, and 7PLUS itself was used only to check the result.
+
+Permissive licences (no source offer required):
+  Python 3 (PSF), numpy (BSD-3-Clause), sgp4 2.27 by Brandon Rhodes (MIT;
+  satellite passes, its licence beside it in shack_packet_app/sat/_sgp4),
+  Pillow (MIT-CMU), cryptography
+  (Apache-2.0 or BSD-3-Clause), PyAudio (MIT), PortAudio (MIT), pyserial
+  (BSD-3-Clause), hidapi (BSD-3-Clause option), libxml2 (MIT),
+  mingw-w64 winpthreads (MIT and ZPL-2.1), bcrypt and PyNaCl (Apache-2.0).
+
+Recordings:
+  sounds/mail.wav, message.wav, chat.wav (the "retro" notification voice,
+  from 0.3.0) were spoken by the Piper text-to-speech voice
+  en_GB-cori-high (rhasspy/piper-voices on Hugging Face, made by Bryce
+  Beattie from LibriVox recordings). Its model card gives the dataset's
+  licence as public domain. Rendered once with piper-tts 1.8.0 by the
+  app's tools/render-voice.sh; neither Piper nor the voice model is in
+  this installer.

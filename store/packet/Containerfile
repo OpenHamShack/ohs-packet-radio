@@ -1,0 +1,33 @@
+# OpenHamShack Packet Radio BBS (store form). Built from the staged context
+# tools/build-store.sh makes: shack_packet_box, the radio links of
+# shack_packet_app, and the pinned ohs-libs packages (ohs-libs/).
+FROM docker.io/library/debian:13-slim
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-numpy \
+        python3-libiio \
+        libad9361-0 \
+        ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+RUN useradd --uid 1000 --create-home --home-dir /data --shell /usr/sbin/nologin shack
+COPY ohs-libs/ /opt/shack-packet/lib/
+COPY shack_packet_box/ /opt/shack-packet/shack_packet_box/
+COPY shack_packet_app/ /opt/shack-packet/shack_packet_app/
+COPY LICENSE /opt/shack-packet/
+# A self-check at build time: the server, the engine and the radio links
+# import, and the sysop page is in the image.
+RUN cd /opt/shack-packet && PYTHONPATH=/opt/shack-packet:/opt/shack-packet/lib python3 -c \
+    "import shack_packet_box.server, shack_packet_box.station, shack_packet_app.links, shack_packet.bbs; \
+     from shack_packet_box.server import STATIC; assert '/' in STATIC and '/i18n/en.json' in STATIC"
+ENV PYTHONPATH=/opt/shack-packet:/opt/shack-packet/lib \
+    OHS_PACKET_BOX_DATA=/data \
+    HOME=/data \
+    XDG_CACHE_HOME=/tmp/cache \
+    XDG_CONFIG_HOME=/data/config \
+    SHACK_PORT=8080 \
+    OPENBLAS_NUM_THREADS=1 \
+    PYTHONUNBUFFERED=1
+USER 1000:1000
+WORKDIR /opt/shack-packet
+EXPOSE 8080
+ENTRYPOINT ["python3", "-m", "shack_packet_box"]

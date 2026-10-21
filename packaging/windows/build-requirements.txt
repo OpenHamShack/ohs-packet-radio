@@ -1,0 +1,7 @@
+# What tools/build-windows.ps1 installs besides the staged app.json's
+# requirements.txt (PyQt6, numpy, pyaudio, pyserial - shack-app.toml
+# [python] requirements). Pinned, as openhamshack-nb's and openhamshack-datv's
+# packaging/windows/requirements.txt pin PyInstaller: a new PyInstaller
+# changes what the frozen bundle carries.
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.8

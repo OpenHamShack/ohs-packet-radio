@@ -1,0 +1,8 @@
+# Literals at a sink that are not language (OpenHamShack I18N.md section 3.3).
+# One per line, every entry with a reason; an entry that matches nothing
+# fails the check. Literals still waiting to be converted are not exceptions:
+# they go in i18n-pending.txt (empty: the window was written with tr() from
+# the start).
+# glob | "literal" (JSON) | reason
+src/shack_packet_app/ui/wizard.py | "<ol>" | HTML list markup around steps that are each translated whole
+src/shack_packet_app/ui/wizard.py | "</ol>" | HTML list markup around steps that are each translated whole

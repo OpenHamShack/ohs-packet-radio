@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "ajazz-akp03e": {
+    "K1": {"press": "arm"}, "K2": {"press": "disarm"}, "K3": {"press": "beacon"},
+    "K4": {"press": "connect"}, "K5": {"press": "disconnect"}, "K6": {"press": "halt"},
+    "B1": {"press": "page:prev"}, "B2": {"press": "page:next"}, "B3": {"press": "none"},
+    "D1": {"press": "none", "turn": "power"}, "D2": {"press": "none", "turn": "squelch"},
+    "D3": {"press": "none", "turn": "none-turn"}
+  },
+  "keypad": {
+    "KP1": {"press": "arm"}, "KP0": {"press": "disarm"}, "KPDOT": {"press": "halt"},
+    "KP2": {"press": "beacon"}, "KP7": {"press": "connect"}, "KP9": {"press": "disconnect"},
+    "KPPLUS": {"press": "page:next"}, "KPMINUS": {"press": "page:prev"}
+  }
+}

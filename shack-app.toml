@@ -1,0 +1,94 @@
+# OpenHamShack Packet Radio's installers, through ohs-libs' desktop
+# packaging kit (packaging/README.md there): the .deb and the AppImage are
+# built from this file by the kit's deb/build-deb.sh and
+# appimage/build-appimage.sh. The first app to use the kit directly rather
+# than packaging scripts of its own.
+
+[app]
+id = "com.openhamshack.packet"           # REPO-LAYOUT §5: com.openhamshack.<kind>
+kind = "packet"
+name = "OpenHamShack Packet Radio"
+summary = "APRS, AX.25 chat, a mailbox and IP over packet radio"
+description = """
+APRS (stations heard, an offline map, messages, beacons and an optional
+digipeater), connected-mode AX.25 chat with stations and nodes, a personal
+mailbox, and IP over AX.25 with in-app tools, at 1200 baud through an
+FTX-1, IC-705 or IC-9700, or any radio on a sound card. A receive-only SDR
+monitor watches the band beside it.
+
+A built-in simulator lets you try everything with no radio. The
+transmitter is only keyed while you have armed it, and arming expires on
+its own.
+"""
+executable = "shack-packet"
+# The root VERSION, which src/shack_packet_app/VERSION links to: the stage
+# copies only src/, and the package reads its version from beside itself
+# once installed (shack_packet_app/__init__.py).
+version = { file = "VERSION" }
+entry = "shack_packet_app.__main__:main"
+# The brand kit has no packet icon yet; platform is the family's generic one.
+icon = "platform"
+categories = ["HamRadio", "Network"]
+keywords = ["OpenHamShack", "amateur radio", "ham radio", "packet radio", "APRS", "AX.25", "FTX-1", "IC-705", "IC-9700"]
+
+[python]
+# The engine (shack_packet), the radio links (shack_rig), the band plan
+# (shack_bandplan), the number formats (shack_i18n) and finding and pairing
+# with a controller (shack_client) are ohs-libs', from its main branch
+# (164c5fe or later; the packet branches were merged on 18/10/2026). There
+# is no wheel index to pin them from yet, so tools/ohslibs.py copies them
+# from an ohs-libs checkout into build/ohs-libs (with shack_bandplan's
+# dataset, as its wheel build would), and the kit's paths mechanism stages
+# them beside src/: no package index, no network. tools/build-linux.sh runs
+# it before every build. Once the shared wheel index serves them, the
+# second entry becomes requirements pinned to it (REPO-LAYOUT §3).
+paths = ["src", "build/ohs-libs"]
+# The frozen builds (AppImage) bundle these. PyAudio and pyserial are for a
+# real radio (sound card and CAT); the simulator needs neither, but a
+# tester with a radio must not have to install them into a frozen program.
+# PyQt6 as the development venv runs the tests; numpy in the 2.2 series
+# the .deb gets from Debian 13, so both Linux forms run the same numpy.
+# From 0.2: cryptography checks the update feed's signature (update.py),
+# zeroconf finds controllers (ohsclient.py), paramiko logs in to a Pluto
+# for its transmitter guard and the AD9364 enable (shack_pluto.guard),
+# hidapi and Pillow are the control pad's - each at the version the Windows
+# and macOS builds pin (packaging/windows/build-requirements.txt,
+# packaging/macos/requirements.txt).
+requirements = ["PyQt6==6.9.1", "PyQt6-Qt6==6.9.2", "numpy==2.2.6", "pyaudio==0.2.14", "pyserial==3.5",
+                "cryptography==50.0.2", "zeroconf==0.151.5", "paramiko==3.5.1", "hidapi==0.15.0", "pillow==12.3.0"]
+
+[linux]
+# The .deb runs on the system's Python and Debian's own PyQt6 and numpy
+# (compiled, so never vendored into an Architecture: all package). PyAudio
+# and pyserial are only recommended: without them the simulator and the
+# SDR monitor's synthetic band still run, and the setup check's sound
+# step asks whether PortAudio is installed. Nothing is vendored: the
+# pure-Python libraries come in through [python] paths above.
+# python3-cryptography is a Depends, as NB's is: without it every update
+# check is refused ("cannot check signatures"), quietly, for ever. The rest
+# are Recommends (apt installs them): finding controllers, the pad, the
+# SDR monitor's RTL-SDR and Pluto, and the Pluto as the radio each say what
+# they lack when it is missing. python3-paramiko: without it a Pluto opens
+# receive-only, and says why. python3-pil draws the control pad's key
+# pictures; without it the pad works with blank keys (on Linux shack_pad
+# reads the pad through hidraw, which needs no hidapi).
+depends = ["python3 (>= 3.11)", "python3-pyqt6", "python3-numpy (>= 1:1.24)", "python3-cryptography"]
+recommends = ["python3-pyaudio", "python3-serial", "python3-zeroconf", "python3-hid", "python3-pil", "librtlsdr0",
+              "python3-libiio", "python3-paramiko", "libhackrf0"]
+vendor = []
+# Qt's xcb plugin needs the xcb-util libraries many hosts lack: this list
+# keeps them in the AppImage (the kit's own list is for WebKitGTK apps and
+# takes every libxcb out).
+host_libs = "packaging/host-libs.txt"
+
+[windows]
+# Inno Setup's AppId: made once, 18/10/2026, and never changed - upgrades
+# find the old install by it.
+app_guid = "{572039E7-A9C6-4425-B015-ADA466113B20}"
+
+[macos]
+minimum_system = "12.0"
+
+[pyinstaller]
+# A Qt app's own spec: the kit's leaves Qt out (it is for web-UI apps).
+spec = "packaging/qt-app.spec"

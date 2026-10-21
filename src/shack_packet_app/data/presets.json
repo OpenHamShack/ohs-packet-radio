@@ -1,0 +1,56 @@
+{
+  "comment": "Packet channel presets, in shack_bandplan's presets shape (BANDPLAN-DATA.md section 4.6), most specific first: the station's country, then its IARU region, then everywhere. The APRS frequency itself is taken from the band-plan dataset's spots for the station's plan where it has one (presets.py), so these rows add the connected-mode channels the dataset does not carry yet. The UK node channels are the ones ohs-libs' SDR monitor plan uses (shack_packet/sdr/channels.json, 'as worked in the UK'); the other regions are partial on purpose and say so. Labels are shown as written (frequencies and names, not language). When shack_bandplan gains a 'packet' preset kind, this file goes and presets.py reads that instead. GB 70 cm was checked on 18/10/2026 against the RSGB 2026 band plan (the dataset's own source, sha256 ea574333...), and each of its rows says where in it (src): 432.500 is the narrow-band SSTV centre in the UK, not APRS; APRS is 433.800 where 144.800 cannot be used; packet goes in the two Digital communications segments, 432.625-432.675 and 433.625-433.675 MHz, listed at each segment's ends and middle. IARU Region 1's 432.500 APRS stays in the region-wide entry, as the dataset's iaru-r1 plan has it.",
+  "status": "researched",
+  "presets": [
+    {"kind": "packet", "country": "GB", "presets": [
+      {"id": "aprs", "label": "APRS 144.800", "txHz": 144800000, "mode": "digi", "role": "aprs"},
+      {"id": "node-144925", "label": "144.925", "txHz": 144925000, "mode": "digi", "role": "node"},
+      {"id": "node-1449375", "label": "144.9375", "txHz": 144937500, "mode": "digi", "role": "node"},
+      {"id": "node-144950", "label": "144.950", "txHz": 144950000, "mode": "digi", "role": "node"},
+      {"id": "aprs-70cm", "label": "APRS 433.800", "txHz": 433800000, "mode": "digi", "role": "aprs",
+       "src": "RSGB 2026 p.22: 433.800 MHz for APRS where 144.800 MHz cannot be used"},
+      {"id": "data-432625", "label": "432.625", "txHz": 432625000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 432.6250-432.6750 MHz Digital communications"},
+      {"id": "data-432650", "label": "432.650", "txHz": 432650000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 432.6250-432.6750 MHz Digital communications"},
+      {"id": "data-432675", "label": "432.675", "txHz": 432675000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 432.6250-432.6750 MHz Digital communications"},
+      {"id": "data-433625", "label": "433.625", "txHz": 433625000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 433.6250-433.6750 MHz Digital communications"},
+      {"id": "data-433650", "label": "433.650", "txHz": 433650000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 433.6250-433.6750 MHz Digital communications"},
+      {"id": "data-433675", "label": "433.675", "txHz": 433675000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 433.6250-433.6750 MHz Digital communications"},
+      {"id": "iss", "label": "ISS 145.825", "txHz": 145825000, "mode": "digi", "role": "satellite"}
+    ]},
+    {"kind": "packet", "region": 1, "status": "partial", "presets": [
+      {"id": "aprs", "label": "APRS 144.800", "txHz": 144800000, "mode": "digi", "role": "aprs"},
+      {"id": "aprs-70cm", "label": "APRS 433.800", "txHz": 433800000, "mode": "digi", "role": "aprs",
+       "src": "RSGB 2026 p.22: 433.800 MHz for APRS where 144.800 MHz cannot be used"},
+      {"id": "data-432625", "label": "432.625", "txHz": 432625000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 432.6250-432.6750 MHz Digital communications"},
+      {"id": "data-432650", "label": "432.650", "txHz": 432650000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 432.6250-432.6750 MHz Digital communications"},
+      {"id": "data-432675", "label": "432.675", "txHz": 432675000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 432.6250-432.6750 MHz Digital communications"},
+      {"id": "data-433625", "label": "433.625", "txHz": 433625000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 433.6250-433.6750 MHz Digital communications"},
+      {"id": "data-433650", "label": "433.650", "txHz": 433650000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 433.6250-433.6750 MHz Digital communications"},
+      {"id": "data-433675", "label": "433.675", "txHz": 433675000, "mode": "digi", "role": "data",
+       "src": "RSGB 2026 p.22: 433.6250-433.6750 MHz Digital communications"},
+      {"id": "iss", "label": "ISS 145.825", "txHz": 145825000, "mode": "digi", "role": "satellite"}
+    ]},
+    {"kind": "packet", "region": 2, "status": "partial", "presets": [
+      {"id": "aprs", "label": "APRS 144.390", "txHz": 144390000, "mode": "digi", "role": "aprs"},
+      {"id": "iss", "label": "ISS 145.825", "txHz": 145825000, "mode": "digi", "role": "satellite"}
+    ]},
+    {"kind": "packet", "region": 3, "status": "partial", "presets": [
+      {"id": "aprs", "label": "APRS 144.800", "txHz": 144800000, "mode": "digi", "role": "aprs"},
+      {"id": "iss", "label": "ISS 145.825", "txHz": 145825000, "mode": "digi", "role": "satellite"}
+    ]},
+    {"kind": "packet", "everywhere": true, "status": "partial", "presets": [
+      {"id": "iss", "label": "ISS 145.825", "txHz": 145825000, "mode": "digi", "role": "satellite"}
+    ]}
+  ]
+}

@@ -1,0 +1,187 @@
+# English template for the shack-packet-box gettext domain (docs/I18N.md).
+# Written by tools/i18n.py pot; do not edit.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+#: src/shack_packet_box/station.py:283
+msgid "A real radio is used only through the controller's broker."
+msgstr ""
+
+#: src/shack_packet_box/server.py:208
+msgid "Say something."
+msgstr ""
+
+#: src/shack_packet_box/server.py:192
+msgid "That is not a callsign."
+msgstr ""
+
+#: src/shack_packet_box/station.py:228
+msgid "The BBS needs a callsign (BBS_CALLSIGN)."
+msgstr ""
+
+#: src/shack_packet_box/station.py:356
+msgid "The BBS's radio is not open."
+msgstr ""
+
+#: src/shack_packet_box/station.py:406
+msgid "The Packet Radio BBS has this radio reserved."
+msgstr ""
+
+#: src/shack_packet_box/shack.py:284
+#, python-brace-format
+msgid "The controller has not answered for {s:.0f} s, so {device} is no longer held"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:235
+#, python-brace-format
+msgid "The controller refused to put {device} on the air (HTTP {code})"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:282
+#, python-brace-format
+msgid "The controller took {device} back"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:214
+#, python-brace-format
+msgid "The controller would not change {device} to {mode} (HTTP {code})"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:201
+#, python-brace-format
+msgid "The controller would not lend {device} (HTTP {code})"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:158
+#, python-brace-format
+msgid "The controller's hardware broker did not answer ({why})"
+msgstr ""
+
+#: src/shack_packet_box/server.py:86
+msgid "The request is not JSON."
+msgstr ""
+
+#: src/shack_packet_box/server.py:88
+msgid "The request is not a JSON object."
+msgstr ""
+
+#: src/shack_packet_box/server.py:81
+msgid "The request is too large."
+msgstr ""
+
+#: src/shack_packet_box/server.py:170
+msgid "There is no such message."
+msgstr ""
+
+#: src/shack_packet_box/server.py:137
+msgid "There is nothing here."
+msgstr ""
+
+#: src/shack_packet_box/server.py:113
+msgid "This app answers only through the OpenHamShack controller."
+msgstr ""
+
+#: src/shack_packet_box/server.py:123
+msgid "This needs the View level."
+msgstr ""
+
+#: src/shack_packet_box/server.py:97
+#, python-brace-format
+msgid "This needs the {level} level."
+msgstr ""
+
+#: src/shack_packet_box/station.py:354
+msgid "Transmit is not allowed in this BBS's settings (TX_ALLOWED)."
+msgstr ""
+
+#: src/shack_packet_box/shack.py:200
+msgid "another app"
+msgstr ""
+
+#: src/shack_packet_box/station.py:363
+#, python-brace-format
+msgid "armed by {user} ({device})"
+msgstr ""
+
+#: src/shack_packet_box/station.py:373
+msgid "by the sysop"
+msgstr ""
+
+#: src/shack_packet_box/server.py:248
+#, python-brace-format
+msgid "by {user}"
+msgstr ""
+
+#: src/shack_packet_box/station.py:373
+#, python-brace-format
+msgid "disarmed: {why}"
+msgstr ""
+
+#: src/shack_packet_box/station.py:378
+msgid "not armed"
+msgstr ""
+
+#: src/shack_packet_box/station.py:332
+#, python-brace-format
+msgid "radio released: {why}"
+msgstr ""
+
+#: src/shack_packet_box/station.py:404
+#, python-brace-format
+msgid "refused to hand the radio to {app}: the BBS has it reserved"
+msgstr ""
+
+#: src/shack_packet_box/server.py:232
+msgid "released by the sysop"
+msgstr ""
+
+#: src/shack_packet_box/station.py:336
+msgid "the BBS was stopped"
+msgstr ""
+
+#: src/shack_packet_box/station.py:423
+msgid "the arm expired"
+msgstr ""
+
+#: src/shack_packet_box/station.py:387
+#, python-brace-format
+msgid "the broker refused to go on the air: {why}"
+msgstr ""
+
+#: src/shack_packet_box/station.py:401
+msgid "the controller asked for the radio (stop)"
+msgstr ""
+
+#: src/shack_packet_box/station.py:438
+msgid "the controller asked for the radio; it stays reserved for the BBS"
+msgstr ""
+
+#: src/shack_packet_box/station.py:443
+msgid "the radio is held again (receive only until armed)"
+msgstr ""
+
+#: src/shack_packet_box/station.py:383
+msgid "the radio is not held from the broker"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:199
+#, python-brace-format
+msgid "{app} has this radio ({device}); it was not taken from it"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:208
+#, python-brace-format
+msgid "{device} is not held"
+msgstr ""
+
+#: src/shack_packet_box/shack.py:225
+#, python-brace-format
+msgid "{device} is not held for transmitting"
+msgstr ""
+
+#: src/shack_packet_box/station.py:308
+#, python-brace-format
+msgid "{kind} open on {mhz} MHz, receiving"
+msgstr ""

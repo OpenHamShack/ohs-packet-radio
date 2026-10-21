@@ -1,0 +1,1 @@
+Notifications for messages, chat and mail (beep, a spoken 'You've got mail!' or your own sound), transmit gain in Settings, Find for a Pluto's address, and link test, Icom login and Pluto busy-channel fixes from the GM0OTB on-air test.

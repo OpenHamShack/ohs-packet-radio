@@ -1,0 +1,4 @@
+# Baseline for shack-i18n-check: user-visible literals waiting to be converted.
+# Empty: the window was written with tr() from the start. Rewrite with
+# tools/i18n.py baseline, never by hand-adding.
+# path | "literal" | pending

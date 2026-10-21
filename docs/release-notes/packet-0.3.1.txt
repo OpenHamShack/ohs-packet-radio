@@ -1,0 +1,1 @@
+How long a file will take: the Send dialog shows the time at every speed (1200 to 153600 baud and 23 cm DD), after compression and picture resizing, greys out what your radio cannot do, and uses what a real transfer or link test with that station measured.

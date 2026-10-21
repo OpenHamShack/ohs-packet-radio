@@ -1,0 +1,92 @@
+{
+  "title": "Packet BBS",
+  "tab": {
+    "overview": "Overview",
+    "messages": "Messages",
+    "users": "Users",
+    "room": "Conference",
+    "log": "Log"
+  },
+  "btn": {
+    "arm": "Arm / renew transmit",
+    "disarm": "Disarm",
+    "forward": "Forward now",
+    "release": "Release the radio",
+    "claim": "Take the radio again",
+    "all": "All",
+    "personal": "Personal",
+    "bulletins": "Bulletins",
+    "kill": "Kill",
+    "bar": "Bar",
+    "unbar": "Unbar",
+    "remove": "Remove",
+    "say": "Say",
+    "topic": "Set topic"
+  },
+  "head": {
+    "connected": "Connected now",
+    "partners": "Forwarding partners",
+    "call": "Call",
+    "doing": "Doing",
+    "partner": "Partner",
+    "via": "Via",
+    "routes": "Routes",
+    "state": "State",
+    "number": "#",
+    "type": "Type",
+    "to": "To",
+    "at": "@",
+    "from": "From",
+    "subject": "Subject",
+    "name": "Name",
+    "home": "Home",
+    "qth": "QTH",
+    "connects": "Connects",
+    "lastSeen": "Last seen",
+    "topicLabel": "Topic:",
+    "here": "Here:"
+  },
+  "ph": {
+    "say": "Say to the room as SYSOP",
+    "topic": "New topic"
+  },
+  "badge": {
+    "armed": "ARMED by {who}",
+    "rx": "receive only",
+    "onair": "ON AIR",
+    "reserved": "{kind} reserved"
+  },
+  "fact": {
+    "bbs": "BBS",
+    "room": "Conference",
+    "roomByC": "by C from the BBS",
+    "radio": "Radio",
+    "freq": "Frequency",
+    "claim": "Broker claim",
+    "allowed": "Transmit allowed",
+    "yes": "yes",
+    "noSetting": "no (TX_ALLOWED)",
+    "expires": "Arm expires",
+    "untilDisarmed": "when disarmed",
+    "ids": "IDs sent",
+    "messages": "Messages",
+    "counts": "{p} personal, {b} bulletins, {u} users",
+    "problem": "Problem",
+    "setting": "Setting"
+  },
+  "empty": {
+    "nobody": "Nobody",
+    "none": "None",
+    "noTopic": "(none)",
+    "nobodyHere": "nobody"
+  },
+  "ask": {
+    "arm": "Let the BBS transmit, on your behalf, while nobody is at the radio?",
+    "release": "Stop the BBS using its radio?",
+    "kill": "Kill message {n}?"
+  },
+  "msg": {
+    "header": "#{n} {type} from {from} to {to} @ {at}",
+    "bid": "Bid {bid}, {when}"
+  }
+}

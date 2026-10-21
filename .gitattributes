@@ -1,0 +1,18 @@
+# cmd.exe misreads labels and goto in a batch file with bare LF line ends.
+*.cmd text eol=crlf
+
+# What a published source tarball leaves out (openhamshack-nb tools/source-site.py
+# tarball, run by tools/publish.sh source for every release from 0.2.0).
+# The repository is private; each release's tarball is public on
+# https://openhamshack.com/source/#openhamshack-packet. Only internal notes
+# that nothing builds, tests or packages may be listed: the GPL's
+# corresponding source is everything needed to rebuild what is shipped.
+#
+# HANDOVER.md: the working notes passed between sessions - build hosts,
+# test radios on the home network, people's names and callsigns from the
+# on-air tests. Nothing reads it; docs/ says everything about the program.
+HANDOVER.md export-ignore
+
+# The scrub list names everything it hides, so it is never published
+# itself (the tarball tool refuses to make a tarball that would carry it).
+packaging/source-scrub.txt export-ignore

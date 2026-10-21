@@ -1,0 +1,32 @@
+# What tools/build-macos.sh installs into its build virtualenv. The same
+# pins as packaging/windows/build-requirements.txt and shack-app.toml's
+# [python] requirements, so a Mac build and the other platforms run the
+# same Python packages, with one exception: PyPI's PyAudio has no macOS
+# wheel, so build-macos.sh builds it from its sdist against a PortAudio it
+# builds itself (openhamshack-nb's method, proved there), and pins it there.
+# Move the PyAudio pin only together with the Windows and shack-app.toml
+# ones.
+numpy==2.2.6
+PyQt6==6.9.1
+PyQt6-Qt6==6.9.2
+pyserial==3.5
+paramiko==3.5.1
+# The AKP03E control pad (shack_pad): hidapi reaches it, Pillow draws its keys.
+hidapi==0.15.0
+Pillow==12.3.0
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.8
+# Build tools only, never bundled: cmake builds PortAudio (the Mac has
+# Apple's compilers but no cmake, and nothing may be installed
+# system-wide, so this is the pip package that carries a prebuilt cmake
+# binary); setuptools builds PyAudio's sdist (pinned here rather than left
+# to an isolated build's latest).
+cmake==4.1.2
+setuptools==80.9.0
+# From 0.2 (shack-app.toml [python] requirements, the same pins): the update
+# feed's signature, finding controllers, and the control pad's hidapi and
+# Pillow. Wheels for macOS arm64, nothing built here.
+cryptography==50.0.2
+zeroconf==0.151.5
+hidapi==0.15.0
+pillow==12.3.0

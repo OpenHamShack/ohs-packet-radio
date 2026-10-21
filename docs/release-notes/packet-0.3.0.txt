@@ -1,0 +1,1 @@
+Link test by callsign, Find my radio and a control strip; UK nodes, BBSs and conferences; files and pictures; mail between stations and Winlink email; APRS extras; an IC-9700 page with spectrum, adaptive power, satellites and 23 cm DD. Tested on the simulator only so far.

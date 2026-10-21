@@ -1,0 +1,13 @@
+# shack-i18n-check settings (OpenHamShack I18N.md section 3).
+# Run it as the suite does: python3 tools/i18n.py check
+
+# What a person never reads: the tests' fixtures and the developer tools
+# (tools/screens.py's example callsigns and messages are fixtures for the
+# tester guide's pictures). `.claude/**` is other checkouts, not this one:
+# an agent's worktree under .claude/worktrees/ is a whole second copy of
+# the repo, and while one sat there (locked, its branch long merged) the
+# check reported that copy's strings and failed on the main checkout only.
+exclude = ["tests/**", "tools/**", "docs/**", "packaging/**", ".claude/**"]
+
+[python]
+sinks = ["drawText", "getSaveFileName", "setSuffix", "setPlaceholderText", "showMessage"]

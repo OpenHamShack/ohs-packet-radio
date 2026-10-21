@@ -1,0 +1,53 @@
+{
+ "file": "basemap-2026-10-18.npz",
+ "scale": 10000.0,
+ "run": 128,
+ "attribution": "Natural Earth; towns: GeoNames (CC BY 4.0)",
+ "comment": "Written by tools/basemap.py; do not edit by hand. The app finds the basemap through this file (basemap.py).",
+ "sources": [
+  {
+   "layer": "coast10",
+   "file": "ne_10m_coastline.geojson",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_coastline.geojson",
+   "licence": "Public domain. \"All versions of Natural Earth raster + vector map data found on this website are in the public domain.\" (naturalearthdata.com/about/terms-of-use)",
+   "fetched": "2026-10-18",
+   "sha256": "6f75ae0e0de157b14946e2255eb1f5486d9a13819032e26d4610852d296788f6",
+   "thinnedDeg": 0.001
+  },
+  {
+   "layer": "border10",
+   "file": "ne_10m_admin_0_boundary_lines_land.geojson",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_boundary_lines_land.geojson",
+   "licence": "Public domain. \"All versions of Natural Earth raster + vector map data found on this website are in the public domain.\" (naturalearthdata.com/about/terms-of-use)",
+   "fetched": "2026-10-18",
+   "sha256": "74d9c16229c095fde65943a9919e337682f044bcebccb120764f38edf3b70f4a",
+   "thinnedDeg": 0.001
+  },
+  {
+   "layer": "coast50",
+   "file": "ne_50m_coastline.geojson",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_coastline.geojson",
+   "licence": "Public domain. \"All versions of Natural Earth raster + vector map data found on this website are in the public domain.\" (naturalearthdata.com/about/terms-of-use)",
+   "fetched": "2026-10-18",
+   "sha256": "271f1c4c1908312bac6b29d158ea1356544beafc129f260005300913aa5ea283",
+   "thinnedDeg": 0.01
+  },
+  {
+   "layer": "border50",
+   "file": "ne_50m_admin_0_boundary_lines_land.geojson",
+   "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_boundary_lines_land.geojson",
+   "licence": "Public domain. \"All versions of Natural Earth raster + vector map data found on this website are in the public domain.\" (naturalearthdata.com/about/terms-of-use)",
+   "fetched": "2026-10-18",
+   "sha256": "2faac4f6b34386f3d21b6e018cf151f241f00e5c936d44dd17d7d9bfb147fa48",
+   "thinnedDeg": 0.01
+  },
+  {
+   "layer": "towns",
+   "file": "cities5000.zip",
+   "url": "https://download.geonames.org/export/dump/cities5000.zip",
+   "licence": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); credit GeoNames, geonames.org",
+   "fetched": "2026-10-18",
+   "sha256": "22d0f8a954ce3ab5a327b2ccdfd39919d53eab9f0e4a7f2529d52dd955d0b5db"
+  }
+ ]
+}

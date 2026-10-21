@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="title">Packet BBS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1><span data-i18n="title">Packet BBS</span> <span id="bbs"></span></h1>
+  <div id="badges"></div>
+</header>
+<nav>
+  <button data-tab="overview" class="on" data-i18n="tab.overview">Overview</button>
+  <button data-tab="messages" data-i18n="tab.messages">Messages</button>
+  <button data-tab="users" data-i18n="tab.users">Users</button>
+  <button data-tab="room" data-i18n="tab.room">Conference</button>
+  <button data-tab="log" data-i18n="tab.log">Log</button>
+</nav>
+<main>
+  <section id="overview">
+    <dl id="facts"></dl>
+    <div class="actions">
+      <button id="arm" class="danger" data-i18n="btn.arm">Arm / renew transmit</button>
+      <button id="disarm" data-i18n="btn.disarm">Disarm</button>
+      <button id="forward" data-i18n="btn.forward">Forward now</button>
+      <button id="release" data-i18n="btn.release">Release the radio</button>
+      <button id="claim" data-i18n="btn.claim">Take the radio again</button>
+    </div>
+    <p id="said" role="status"></p>
+    <h2 data-i18n="head.connected">Connected now</h2>
+    <table><thead><tr><th data-i18n="head.call">Call</th><th data-i18n="head.doing">Doing</th></tr></thead><tbody id="sessions"></tbody></table>
+    <h2 data-i18n="head.partners">Forwarding partners</h2>
+    <table><thead><tr><th data-i18n="head.partner">Partner</th><th data-i18n="head.via">Via</th><th data-i18n="head.routes">Routes</th><th data-i18n="head.state">State</th></tr></thead><tbody id="partners"></tbody></table>
+  </section>
+  <section id="messages" hidden>
+    <div class="actions">
+      <button data-type="" data-i18n="btn.all">All</button><button data-type="P" data-i18n="btn.personal">Personal</button><button data-type="B" data-i18n="btn.bulletins">Bulletins</button>
+    </div>
+    <table><thead><tr><th data-i18n="head.number">#</th><th data-i18n="head.type">Type</th><th data-i18n="head.to">To</th><th data-i18n="head.at">@</th><th data-i18n="head.from">From</th><th data-i18n="head.subject">Subject</th><th data-i18n="head.state">State</th><th></th></tr></thead>
+      <tbody id="msgs"></tbody></table>
+    <pre id="reading"></pre>
+  </section>
+  <section id="users" hidden>
+    <table><thead><tr><th data-i18n="head.call">Call</th><th data-i18n="head.name">Name</th><th data-i18n="head.home">Home</th><th data-i18n="head.qth">QTH</th><th data-i18n="head.connects">Connects</th><th data-i18n="head.lastSeen">Last seen</th><th></th></tr></thead>
+      <tbody id="userrows"></tbody></table>
+  </section>
+  <section id="room" hidden>
+    <p><span data-i18n="head.topicLabel">Topic:</span> <b id="topic"></b> &middot; <span data-i18n="head.here">Here:</span> <span id="members"></span></p>
+    <pre id="roomlog"></pre>
+    <form id="sayform"><input id="say" data-i18n-attr="placeholder:ph.say" placeholder="Say to the room as SYSOP" autocomplete="off"><button data-i18n="btn.say">Say</button></form>
+    <form id="topicform"><input id="newtopic" data-i18n-attr="placeholder:ph.topic" placeholder="New topic"><button data-i18n="btn.topic">Set topic</button></form>
+  </section>
+  <section id="log" hidden><pre id="logtext"></pre></section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+# The Corresponding Source for the third-party GPL and LGPL code inside
+# Packet Radio's installers, one tarball per line, in the shared source
+# site's manifest format (openhamshack-nb docs/source-site.md, served as
+# https://openhamshack.com/source/HOW-TO-PUBLISH.txt). tools/publish.sh
+# source publishes it as the manifest openhamshack-packet, with this
+# release's own source (the app, and the ohs-libs libraries it carries),
+# before any installer of the release goes up; its download pages and
+# THIRD-PARTY.txt inside each installer point to
+# https://openhamshack.com/source/#openhamshack-packet.
+#
+# Added for 0.2.0 (18/10/2026): no Packet Radio release before it offered
+# this source, although 0.1.0-0.1.2 carried most of the same code.
+#
+# What it covers: everything GPL or LGPL in the Windows installer and the
+# macOS .dmg, and in the Linux AppImage the Qt, PyQt6 and Python packages
+# (the same pins). Permissively licensed parts (Python, numpy, Pillow,
+# cryptography, PortAudio, PyAudio, pyserial, hidapi under its BSD option,
+# libxml2, winpthreads, libhackrf itself) need no source offer and are
+# named in THIRD-PARTY.txt only. The .deb carries none of this: it uses the
+# distribution's packages. NOT yet covered: the Debian bookworm system
+# libraries the AppImage carries (libstdc++, libreadline, libudev...);
+# their source is Debian's, at https://snapshot.debian.org/, which
+# THIRD-PARTY.txt says.
+#
+# Not listed, because they need no source offer: the notification voice
+# clips (sounds/*.wav, 0.3.0), rendered once with Piper's en_GB-cori-high
+# voice, whose model card gives its dataset's licence as public domain
+# (THIRD-PARTY.txt; tools/render-voice.sh makes them again). Neither
+# Piper (MIT) nor the voice model is shipped.
+#
+# Not listed either, because they are inside this release's own source
+# tarballs (the app's and the ohs-libs one): code ported or vendored from
+# elsewhere from 0.3.0 - sgp4 2.27 (MIT, shack_packet_app/sat/_sgp4 with
+# its LICENSE), wl2k-go's LZHUF (MIT, shack_packet.lzhuf) and YAPP from
+# F6FBB's yapp.c (GPL-2.0-or-later, shack_packet.yapp). THIRD-PARTY.txt
+# names each.
+#
+# A tarball another project already lists is the same name and SHA-256
+# here (libiio, libusb 1.0.24/1.0.29, libserialport, hackrf, paramiko):
+# the site stores each once. Every hash below was taken from a download
+# of the URL on 18/10/2026 and, for those already on the site, matches
+# the site's SHA256SUMS.
+#
+# Keep this list exactly what the NEXT installers to be published carry:
+# change a pin in a build script, change its line here in the same commit.
+
+@title OpenHamShack Packet Radio
+@home https://openhamshack.com/apps/packet/
+
+pyqt6-6.9.1.tar.gz | 50642be03fb40f1c2111a09a1f5a0f79813e039c15e78267e6faaf8a96c1c3a6 | GPL-3.0 | Packet 0.2.0 onward: Windows, macOS, AppImage | PyQt6\QtCore, QtGui, QtWidgets, QtSvg, QtNetwork (PyQt6 6.9.1) | https://files.pythonhosted.org/packages/source/P/PyQt6/pyqt6-6.9.1.tar.gz
+qtbase-everywhere-src-6.9.2.tar.xz | 44be9c9ecfe04129c4dea0a7e1b36ad476c9cc07c292016ac98e7b41514f2440 | LGPL-3.0 | Packet 0.2.0 onward: Windows, macOS, AppImage | Qt6Core, Qt6Gui, Qt6Network, Qt6Widgets, Qt6DBus, Qt6OpenGL and the platform, style, generic, TLS and gif/ico/jpeg image-format plugins (Qt 6.9.2, from PyQt6-Qt6 6.9.2) | https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtbase-everywhere-src-6.9.2.tar.xz https://download.qt.io/official_releases/qt/6.9/6.9.2/submodules/qtbase-everywhere-src-6.9.2.tar.xz
+qtsvg-everywhere-src-6.9.2.tar.xz | d984cab8f26334aa1c15e5b8f0cd9f1b7c0c1289fe0b68c1c84ab469b75605a5 | LGPL-3.0 | Packet 0.2.0 onward: Windows, macOS, AppImage | Qt6Svg and the qsvg and qsvgicon plugins (Qt 6.9.2) | https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtsvg-everywhere-src-6.9.2.tar.xz https://download.qt.io/official_releases/qt/6.9/6.9.2/submodules/qtsvg-everywhere-src-6.9.2.tar.xz
+qtimageformats-everywhere-src-6.9.2.tar.xz | 8a023f7e2f57dedc02e2ab10c975f7cb3cccac9b8f0823c12fd6824834549139 | LGPL-3.0 | Packet 0.2.0 onward: Windows, macOS, AppImage | the qicns, qtga, qtiff, qwbmp and qwebp image-format plugins (Qt 6.9.2) | https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtimageformats-everywhere-src-6.9.2.tar.xz https://download.qt.io/official_releases/qt/6.9/6.9.2/submodules/qtimageformats-everywhere-src-6.9.2.tar.xz
+qttranslations-everywhere-src-6.9.2.tar.xz | c73bb6281ed365c0f954f4b1b6e1b13e1b3fefd94854f46fcd9a412f641f7ed6 | LGPL-3.0 | Packet 0.2.0 onward: Windows, macOS, AppImage | Qt's translations, PyQt6\Qt6\translations\*.qm (Qt 6.9.2) | https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qttranslations-everywhere-src-6.9.2.tar.xz https://download.qt.io/official_releases/qt/6.9/6.9.2/submodules/qttranslations-everywhere-src-6.9.2.tar.xz
+qtwayland-everywhere-src-6.9.2.tar.xz | cad79806565568f12f9983fed69219416abcee9d5deef4abdfcf94aa2eef7781 | LGPL-3.0 | Packet 0.2.0 onward: AppImage | Qt6WaylandClient, Qt6WlShellIntegration and the Wayland platform and decoration plugins (Qt 6.9.2) | https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtwayland-everywhere-src-6.9.2.tar.xz https://download.qt.io/official_releases/qt/6.9/6.9.2/submodules/qtwayland-everywhere-src-6.9.2.tar.xz
+paramiko-3.5.1.tar.gz | b2c665bc45b2b215bd7d7f039901b14b067da00f3a11e6640995fd58f2664822 | LGPL-2.1-or-later | Packet 0.2.0 onward: Windows, macOS, AppImage | paramiko (3.5.1), the Pluto transmitter guard's SSH | https://files.pythonhosted.org/packages/source/p/paramiko/paramiko-3.5.1.tar.gz
+zeroconf-0.151.5.tar.gz | 28c2ec9d772007eedf11b41a9c9fd3d5c684c17b00721ff8f1ee31b20ad286a1 | LGPL-2.1-or-later | Packet 0.2.0 onward: Windows, macOS, AppImage | zeroconf (0.151.5), finding a controller | https://files.pythonhosted.org/packages/source/z/zeroconf/zeroconf-0.151.5.tar.gz
+libiio-0.26.tar.gz | fb445fb860ef1248759f45d4273a4eff360534480ec87af64c6b8db3b99be7e5 | LGPL-2.1-or-later | Packet 0.2.0 onward: Windows, macOS | libiio\libiio.dll and iio.py (ADI's 0.26 Windows release), Contents/Frameworks/libiio/libiio.dylib (built from this) | https://github.com/analogdevicesinc/libiio/archive/refs/tags/v0.26.tar.gz
+libusb-1.0.24.tar.bz2 | 7efd2685f7b327326dcfb85cee426d9b871fd70e22caa15bb68d595ce2a2b12a | LGPL-2.1-or-later | Packet 0.2.0 onward: Windows | libiio\libusb-1.0.dll (libusb 1.0.24, in ADI's libiio 0.26 release) | https://github.com/libusb/libusb/releases/download/v1.0.24/libusb-1.0.24.tar.bz2
+libserialport-0.1.1.tar.gz | 4a2af9d9c3ff488e92fb75b4ba38b35bcf9b8a66df04773eba2a7bbf1fa7529d | LGPL-3.0-or-later | Packet 0.2.0 onward: Windows | libiio\libserialport-0.dll (libserialport 0.1.1, in ADI's libiio 0.26 release) | https://sigrok.org/download/source/libserialport/libserialport-0.1.1.tar.gz
+rtl-sdr-blog-1.4.0.tar.gz | 89520433e63b1a1371b45d8deea198cad9dbd1f0d55cc3a706aafb7b187bd325 | GPL-2.0-or-later | Packet 0.2.0 onward: Windows, macOS | rtlsdr\rtlsdr.dll (rtl-sdr-blog's V1.4.0 Windows release) and Contents/Frameworks/rtlsdr/librtlsdr.dylib (built from this; GitHub's archive of tag V1.4.0) | https://github.com/rtlsdrblog/rtl-sdr-blog/archive/refs/tags/V1.4.0.tar.gz
+libusb-1.0.27.tar.bz2 | ffaa41d741a8a3bee244ac8e54a72ea05bf2879663c098c82fc5757853441575 | LGPL-2.1-or-later | Packet 0.2.0 onward: macOS | Contents/Frameworks/rtlsdr/libusb-1.0.dylib and hackrf/libusb-1.0.dylib (libusb 1.0.27, built from this) | https://github.com/libusb/libusb/releases/download/v1.0.27/libusb-1.0.27.tar.bz2
+hackrf-2026.01.3.tar.xz | d2b76a1115d9b4df648c29efb2f3c8e80009b7cf9a8adf37abbfdba72101b086 | GPL-2.0 (libhackrf itself BSD-3-Clause) | Packet 0.2.0 onward: Windows, macOS | hackrf\hackrf-0.dll (conda-forge libhackrf0-2026.01.3-hfd05255_0; its one patch renames the DLL) and Contents/Frameworks/hackrf/libhackrf.dylib (built from this) | https://github.com/greatscottgadgets/hackrf/releases/download/v2026.01.3/hackrf-2026.01.3.tar.xz
+libusb-1.0.29.tar.bz2 | 5977fc950f8d1395ccea9bd48c06b3f808fd3c2c961b44b0c2e6e29fc3a70a85 | LGPL-2.1-or-later | Packet 0.2.0 onward: Windows | hackrf\libusb-1.0.dll (libusb 1.0.29, conda-forge libusb-1.0.29-h1839187_0) | https://github.com/libusb/libusb/releases/download/v1.0.29/libusb-1.0.29.tar.bz2
+
+> Each tarball is the unmodified upstream release. Packet Radio's own
+> source, and that of the OpenHamShack libraries inside it, is listed
+> above per release.

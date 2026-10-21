@@ -1,0 +1,1 @@
+Fast packet on a Pluto (9600 to 153600 baud, link adaptation, band-plan checks), a Path test page, Link test with a friend, amplifier drive cap and PTT output, a Pluto on the controller, and USB mode checks.

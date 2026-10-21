@@ -1,0 +1,35 @@
+# Libraries the Packet Radio AppImage leaves to the host (shack-app.toml
+# [linux] host_libs), the same list as QO-100 NB's and Radio's in
+# openhamshack-nb: the core C, graphics and font stack the host's display
+# server and drivers must match. Not the xcb-util family (libxcb-cursor,
+# -icccm, -util, -image, -keysyms, -render-util, -xkb, libxkbcommon-x11),
+# which Qt 6's xcb plugin needs and many hosts lack: those are bundled
+# from the build image. So is libjack, which the bundled PortAudio links
+# and a desktop without JACK lacks; ALSA is the host's, as its plugins and
+# configuration are.
+libglib-2.0.so*
+libgobject-2.0.so*
+libgio-2.0.so*
+libgmodule-2.0.so*
+libgthread-2.0.so*
+libfreetype.so*
+libfontconfig.so*
+libX11.so*
+libX11-xcb.so*
+libXau.so*
+libXdmcp.so*
+libxcb.so*
+libxcb-render.so*
+libxcb-shm.so*
+libxcb-randr.so*
+libxcb-shape.so*
+libxcb-sync.so*
+libxcb-xfixes.so*
+libxcb-glx.so*
+libxkbcommon.so*
+libwayland*.so*
+libGL*.so*
+libEGL*.so*
+libdrm.so*
+libgbm.so*
+libasound.so*

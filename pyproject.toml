@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shack-packet-app"
+dynamic = ["version"]
+description = "OpenHamShack Packet Radio: APRS, connected-mode chat, a mailbox and IP over AX.25 on the desktop"
+requires-python = ">=3.11"
+license = "GPL-3.0-or-later"
+authors = [{ name = "Brian Henderson, GM4BRI" }]
+# The engine and the radio links are ohs-libs' (shack-packet, shack-rig);
+# the window is PyQt6. shack-i18n is a run-time dependency, not only a
+# test one: ui/fmt.py formats every number and date through it. PortAudio
+# (pyaudio) and pyserial are needed only for a real radio, so a tester
+# trying the simulator needs neither.
+dependencies = ["PyQt6>=6.4", "numpy>=1.24", "shack-packet>=0.1", "shack-rig>=0.1", "shack-bandplan>=0.1",
+                "shack-i18n>=0.1", "shack-client>=0.1"]
+
+[project.optional-dependencies]
+radios = ["pyaudio>=0.2.11", "pyserial>=3.5"]
+test = ["pytest>=8"]
+
+[project.scripts]
+shack-packet = "shack_packet_app.__main__:main"
+
+[tool.setuptools.dynamic]
+version = { file = "VERSION" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+shack_packet_app = ["data/*.json", "data/*.npz", "i18n/*.qm", "i18n/*.ts", "resources/*.png", "sounds/*.wav",
+                    "sat/_sgp4/LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
